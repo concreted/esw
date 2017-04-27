@@ -14,14 +14,14 @@ function fetchData (url) {
 }
 
 // register service worker
-navigator.serviceWorker.register('sw.js', { scope: './' })
-  .then(navigator.serviceWorker.ready)
-  .then(function () {
-    console.log('service worker registered')
-  })
-  .catch(function (error) {
-    console.log('error when registering service worker', error, arguments)
-  });
+// navigator.serviceWorker.register('sw.js', { scope: './', type: 'module' })
+//   .then(navigator.serviceWorker.ready)
+//   .then(function () {
+//     console.log('service worker registered')
+//   })
+//   .catch(function (error) {
+//     console.log('error when registering service worker', error, arguments)
+//   });
 
 
 fetchData('https://blah.com/ping')
