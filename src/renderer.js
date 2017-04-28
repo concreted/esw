@@ -24,7 +24,7 @@ navigator.serviceWorker.register('sw.js', { scope: './' })
   });
 
 
-fetchData('https://blah.com/ping')
+fetchData('https://api.getmira.com/ping')
   .then(function(response) {
       console.log(response)
       return response.json()
