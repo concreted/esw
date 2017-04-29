@@ -3,7 +3,8 @@
   "productName": "esw",
   "version": "1.0.0",
   "description": "My Electron application description",
-  "main": "src/index.js",
+
+  "main": "src/es6-init.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
@@ -44,12 +45,13 @@
     }
   },
   "dependencies": {
-    "electron-compile": "^6.4.0"
+    "electron-compile": "^6.4.1"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-preset-env": "^1.4.0",
     "babel-preset-react": "^6.24.1",
+    "electron-compilers": "^5.8.3",
     "electron-prebuilt-compile": "1.6.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
