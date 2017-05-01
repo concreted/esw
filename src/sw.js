@@ -53,52 +53,36 @@ self.addEventListener('fetch', function fetcher (event) {
     console.log(request)
     console.log(event)
     console.log(request.url)
-    // if is a video, do video stuff
-    if (event.request.headers.get('range')) {
-      event.respondWith(
-        caches.open(CACHE_NAME).then(function(cache) {
-          // return cache.match(event.request)
-          console.log('fetching fetching~');
-          throw new Error();
-          return fetch(event.request)
-            .then(function(response) {
-              return rangeable_resp(event.request, response)
-            })
-        })
-      )
-    } else {
-      // do non video stuff (api gets, files)
-      event.respondWith(
-        caches.open(CACHE_NAME).then(function(cache) {
-          console.log('loaded the cache')
-          console.log(cache)
-          // try making the network request.
-          return fetch(event.request)
-            .then(function(response) {
-              // if it succeeds, save to cache and return.
-              console.log('request succeeded');
-              console.log(response);
-              cache.put(event.request, response.clone());
-              console.log('cached the response!')
-              return response;
-            })
-            .catch(function(err) {
-              // if it fails, try returning cache.
-              console.log('checking the cache...')
-              return cache.match(event.request)
-                .then(function(response) {
-                  if (!response) {
-                    throw Error('fail')
-                  }
-                  console.log('found in cache!')
-                  return response
-                })
-                .catch(function(err) {
-                  console.log('not found in cache..!')
-                })
-            })
-        })
-      );
-    }
+    event.respondWith(
+      caches.open(CACHE_NAME).then(function(cache) {
+        console.log('loaded the cache')
+        console.log(cache)
+        // try making the network request.
+        return fetch(event.request)
+          .then(function(response) {
+            // if it succeeds, save to cache and return.
+            console.log('request succeeded');
+            console.log(response);
+            cache.put(event.request, response.clone());
+            console.log('cached the response!')
+            return response;
+          })
+          .catch(function(err) {
+            // if it fails, try returning cache.
+            console.log('checking the cache...')
+            return cache.match(event.request)
+              .then(function(response) {
+                if (!response) {
+                  throw Error('fail')
+                }
+                console.log('found in cache!')
+                return response
+              })
+              .catch(function(err) {
+                console.log('not found in cache..!')
+              })
+          })
+      })
+    );
   }
 });
