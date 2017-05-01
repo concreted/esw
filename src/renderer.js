@@ -13,6 +13,8 @@ function fetchData (url) {
   })
 }
 
+require('electron').webFrame.registerURLSchemeAsPrivileged('file');
+
 // register service worker
 navigator.serviceWorker.register('sw.js', { scope: './' })
   .then(navigator.serviceWorker.ready)
