@@ -50,7 +50,7 @@ self.addEventListener('fetch', function fetcher (event) {
           return cache.match(event.request)
             .then(function(response) {
               if (!response) {
-                fetch(event.request)
+                return fetch(event.request)
                   .then(function(response) {
                     // if it succeeds, save to cache and return.
                     console.log('request succeeded');
@@ -60,8 +60,10 @@ self.addEventListener('fetch', function fetcher (event) {
                     return response;
                   })
               }
-              console.log('found in cache!')
-              return response
+              else {
+                console.log('found in cache!')
+                return response
+              }
             })
             .catch(function(err) {
               console.log('not found in cache..!')
