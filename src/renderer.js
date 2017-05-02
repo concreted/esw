@@ -23,6 +23,13 @@ navigator.serviceWorker.register('sw.js', { scope: './' })
     console.log('error when registering service worker', error, arguments)
   });
 
+// log used space
+navigator.webkitTemporaryStorage.queryUsageAndQuota (
+    function(usedBytes, grantedBytes) {
+        console.log('Temporary storage: Using ', usedBytes / 1000000, ' MB of ', grantedBytes / 1000000, 'MB');
+    },
+    function(e) { console.log('Failed to query temporary storage data: Error', e);  }
+);
 
 fetchData('https://api.getmira.com/ping')
   .then(function(response) {
@@ -32,3 +39,5 @@ fetchData('https://api.getmira.com/ping')
   .then(function(data) {
       document.getElementById('ping').innerHTML = JSON.stringify(data)
   })
+
+
