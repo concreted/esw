@@ -13,8 +13,6 @@ function fetchData (url) {
   })
 }
 
-require('electron').webFrame.registerURLSchemeAsPrivileged('file');
-
 // register service worker
 navigator.serviceWorker.register('sw.js', { scope: './' })
   .then(navigator.serviceWorker.ready)
@@ -26,7 +24,7 @@ navigator.serviceWorker.register('sw.js', { scope: './' })
   });
 
 
-fetchData('https://blah.com/ping')
+fetchData('https://ghibliapi.herokuapp.com/films/58611129-2dbc-4a81-a72f-77ddfc1b1b49')
   .then(function(response) {
       console.log(response)
       return response.json()

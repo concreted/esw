@@ -3,7 +3,7 @@
   "productName": "esw",
   "version": "1.0.0",
   "description": "My Electron application description",
-
+  "//": "replace the main script with src/index.js to not use electron-compile",
   "main": "src/es6-init.js",
   "scripts": {
     "start": "electron-forge start",
